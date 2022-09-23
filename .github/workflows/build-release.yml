@@ -25,7 +25,7 @@ jobs:
       run: |
         if ! git diff-index --quiet HEAD --; then
           git config user.name 'look at him go'
-          git add .
+          git add summarizer
           git commit -m "Build binary on $(date -Iminutes)"
           git push
         fi
