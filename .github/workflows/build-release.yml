@@ -21,6 +21,7 @@ jobs:
     - name: Move the binary to root
       run: mv -f target/release/summarizer .
     - run: ls -laR
+    - run: git status
     - name: Commit the binary to the repo
       run: |
         if ! git diff-index --quiet HEAD --; then
@@ -28,5 +29,7 @@ jobs:
           git add summarizer
           git commit -m "Build binary on $(date -Iminutes)"
           git push
+        else
+          echo "HUH"
         fi
     
