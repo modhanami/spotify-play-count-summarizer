@@ -16,9 +16,10 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build
       run: cargo build --release
+    - uses: Swatinem/rust-cache@v2
+    - run: ls -laR
     - name: Move the exe to root
       run: mv target/release/*.exe .
-    - run: ls -laR
     - name: Commit the exe to the repo
       run: |
         if ! git diff-index --quiet HEAD --; then
