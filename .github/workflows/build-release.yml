@@ -1,0 +1,29 @@
+name: Rust
+
+on:
+  push:
+    branches: [ "main" ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build
+      run: cargo build --release
+    - name: Move the exe to root
+      run: mv target/release/*.exe .
+    - name: Commit the exe to the repo
+      run: |
+        if ! git diff-index --quiet HEAD --; then
+          git config user.name 'look at him go'
+          git add .
+          git commit -m "Build exe on $(date -Iminutes)"
+          git push
+        fi
+    
