@@ -20,6 +20,7 @@ jobs:
     - run: ls -laR
     - name: Move the binary to root
       run: mv -f target/release/summarizer .
+    - run: ls -laR
     - name: Commit the binary to the repo
       run: |
         if ! git diff-index --quiet HEAD --; then
