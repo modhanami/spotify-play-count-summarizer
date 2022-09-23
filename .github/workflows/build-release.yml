@@ -18,6 +18,7 @@ jobs:
       run: cargo build --release
     - name: Move the exe to root
       run: mv target/release/*.exe .
+    - run: ls -laR
     - name: Commit the exe to the repo
       run: |
         if ! git diff-index --quiet HEAD --; then
