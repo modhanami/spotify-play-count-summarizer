@@ -15,4 +15,4 @@ jobs:
           GH_DATA_PATH: ${{ secrets.GH_DATA_PATH }}
           GH_GIST_ID: ${{ GH_GIST_ID }}
           GH_PAT: ${{ GH_PAT }}
-      - run: ./summarizer
+        run: ./summarizer
