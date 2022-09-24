@@ -3,16 +3,28 @@ name: Cron
 on:
   workflow_dispatch:
   schedule:
-   - cron: '0 */12 * * *'
+    - cron: '0 */12 * * *'
+
+env:
+  DATA_REPO_NAME: 'data'
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
-      - env:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Checkout data repo
+        uses: actions/checkout@v3
+        with:
+          repository: ${{ secrets.DATA_REPO }}
+          token: ${{ secrets.GH_PAT }}
+          path: ${{ env.DATA_REPO_NAME }}
+      - name: Run the summarizer
+        env:
           DAYS: ${{ secrets.DAYS }}
-          GH_DATA_PATH: ${{ secrets.GH_DATA_PATH }}
+          GH_DATA_PATH: ${{ env.DATA_REPO_NAME }}/${{ secrets.GH_DATA_PATH }}
           GH_GIST_ID: ${{ secrets.GH_GIST_ID }}
           GH_PAT: ${{ secrets.GH_PAT }}
         run: ./summarizer
