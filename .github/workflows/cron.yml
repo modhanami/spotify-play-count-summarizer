@@ -13,6 +13,6 @@ jobs:
       - env:
           DAYS: ${{ secrets.DAYS }}
           GH_DATA_PATH: ${{ secrets.GH_DATA_PATH }}
-          GH_GIST_ID: ${{ GH_GIST_ID }}
-          GH_PAT: ${{ GH_PAT }}
+          GH_GIST_ID: ${{ secrets.GH_GIST_ID }}
+          GH_PAT: ${{ secrets.GH_PAT }}
         run: ./summarizer
