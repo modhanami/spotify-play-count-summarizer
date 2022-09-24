@@ -3,6 +3,10 @@ name: Rust
 on:
   push:
     branches: [ "main" ]
+    paths:
+      - 'src/**'
+      - 'Cargo.toml'
+      - 'Cargo-lock.toml'
 
 env:
   CARGO_TERM_COLOR: always
