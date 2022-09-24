@@ -1,0 +1,13 @@
+name: Cron
+
+on:
+  workflow_dispatch:
+  schedule:
+   - cron: '0 */12 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: ./summarizer
